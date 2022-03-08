@@ -13,17 +13,19 @@ func Ola(name string, language string) string {
 		name = "mundo!"
 	}
 
-	prefix := prefixHelloPortuguese
+	return prefixGreeting(language) + name
+}
 
-	if language == spanish {
+func prefixGreeting(language string) (prefix string) {
+	switch language {
+	case spanish:
 		prefix = prefixHelloSpanish
-	}
-
-	if language == french {
+	case french:
 		prefix = prefixHelloFrench
+	default:
+		prefix = prefixHelloPortuguese
 	}
-
-	return prefix + name
+	return
 }
 
 func main() {
