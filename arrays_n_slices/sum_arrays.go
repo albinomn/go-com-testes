@@ -1,6 +1,6 @@
 package arraysnslices
 
-func Sum(array [5]int) int {
+func Sum(array []int) int {
 	var sum int
 
 	for _, number := range array {
