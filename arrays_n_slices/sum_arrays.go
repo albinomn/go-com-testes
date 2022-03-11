@@ -10,10 +10,18 @@ func Sum(slice []int) int {
 	return sum
 }
 
-func SumAll(slices ...[]int) (sum []int) {
+func SumAll(slices ...[]int) (result []int) {
 	for _, numbers := range slices {
-		sum = append(sum, Sum(numbers))
+		result = append(result, Sum(numbers))
 	}
 
+	return
+}
+
+func SumSliceTail(slices ...[]int) (result []int) {
+	for _, numbers := range slices {
+		tail := numbers[1:]
+		result = append(result, Sum(tail))
+	}
 	return
 }
