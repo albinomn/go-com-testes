@@ -20,8 +20,12 @@ func SumAll(slices ...[]int) (result []int) {
 
 func SumSliceTail(slices ...[]int) (result []int) {
 	for _, numbers := range slices {
-		tail := numbers[1:]
-		result = append(result, Sum(tail))
+		if len(numbers) == 0 {
+			result = append(result, 0)
+		} else {
+			tail := numbers[1:]
+			result = append(result, Sum(tail))
+		}
 	}
 	return
 }

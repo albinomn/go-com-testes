@@ -5,7 +5,8 @@ import (
 	"testing"
 )
 
-func checkSlicesDeep(t *testing.T, got []int, want []int) {
+func checkSlicesDeep(t *testing.T, got, want []int) {
+	t.Helper()
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("\n Got: %v\n Want: %v", got, want)
 	}
@@ -52,6 +53,13 @@ func TestSumSliceTail(t *testing.T) {
 	t.Run("Sum 3 slices tail", func(t *testing.T) {
 		got := SumSliceTail([]int{1, 2, 3}, []int{0, 9, 1}, []int{1, 3, 4})
 		want := []int{5, 10, 7}
+
+		checkSlicesDeep(t, got, want)
+	})
+
+	t.Run("Sum empty slices", func(t *testing.T) {
+		got := SumSliceTail([]int{}, []int{2, 4, 5})
+		want := []int{0, 9}
 
 		checkSlicesDeep(t, got, want)
 	})
