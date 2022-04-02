@@ -3,12 +3,17 @@ package smi
 import "math"
 
 type Rectangle struct {
-	width  float64
-	height float64
+	Width  float64
+	Height float64
 }
 
 type Circle struct {
-	radius float64
+	Radius float64
+}
+
+type Triangle struct {
+	Base   float64
+	Height float64
 }
 
 type Shape interface {
@@ -16,13 +21,17 @@ type Shape interface {
 }
 
 func Perimeter(rect Rectangle) float64 {
-	return 2 * (rect.width + rect.height)
+	return 2 * (rect.Width + rect.Height)
+}
+
+func (t Triangle) Area() float64 {
+	return (t.Base * t.Height) * 0.5
 }
 
 func (r Rectangle) Area() float64 {
-	return r.width * r.height
+	return r.Width * r.Height
 }
 
 func (c Circle) Area() float64 {
-	return math.Pi * c.radius * c.radius
+	return math.Pi * c.Radius * c.Radius
 }
