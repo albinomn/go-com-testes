@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestCountdown(t *testing.T) {
@@ -44,4 +45,18 @@ func TestCountdown(t *testing.T) {
 			t.Errorf("\n Got:  %v\n Want: %v", spySleeperPrinter.Calls, want)
 		}
 	})
+}
+
+func TestConfigurableSleeper(t *testing.T) {
+	sleepTime := 5 * time.Second
+
+	spyTime := &SpyTime{}
+
+	sleeper := ConfigurableSleeper{sleepTime, spyTime.Sleep}
+
+	sleeper.Sleep()
+
+	if spyTime.durationSlept != sleepTime {
+		t.Errorf("\n Got:  %v\n Want: %v", spyTime.durationSlept, sleepTime)
+	}
 }
