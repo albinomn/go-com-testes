@@ -27,7 +27,7 @@ func TestRacer(t *testing.T) {
 		}
 
 		if got != want {
-			t.Errorf("got %q, want %q", got, want)
+			t.Errorf("\n Got:  %q\n Want: %q", got, want)
 		}
 	})
 
