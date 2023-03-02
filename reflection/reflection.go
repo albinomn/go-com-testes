@@ -5,22 +5,22 @@ import "reflect"
 func walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
 
-	if val.Kind() == reflect.Slice {
-		for i := 0; i < val.Len(); i++ {
-			walk(val.Index(i).Interface(), fn)
-		}
-		return
+	numberOfValues := 0
+	var getFields func(int) reflect.Value
+
+	switch val.Kind() {
+	case reflect.String:
+		fn(val.String())
+	case reflect.Struct:
+		numberOfValues = val.NumField()
+		getFields = val.Field
+	case reflect.Slice:
+		numberOfValues = val.Len()
+		getFields = val.Index
 	}
 
-	for i := 0; i < val.NumField(); i++ {
-		field := val.Field(i)
-
-		switch field.Kind() {
-		case reflect.String:
-			fn(field.String())
-		case reflect.Struct:
-			walk(field.Interface(), fn)
-		}
+	for i := 0; i < numberOfValues; i++ {
+		walk(getFields(i).Interface(), fn)
 	}
 }
 
