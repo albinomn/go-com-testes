@@ -26,13 +26,13 @@ func TestStack(t *testing.T) {
 func AssertTrue(t *testing.T, got bool) {
 	t.Helper()
 	if !got {
-		t.Errorf("got %v, want true", got)
+		t.Errorf("\nGot:  %v\nWant: true", got)
 	}
 }
 
 func AssertFalse(t *testing.T, got bool) {
 	t.Helper()
 	if got {
-		t.Errorf("got %v, want false", got)
+		t.Errorf("\nGot:  %v\nWant: false", got)
 	}
 }
